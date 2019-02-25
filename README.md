@@ -26,7 +26,7 @@ The first parameter you must provide is the VeeValidate instance you would like 
         })
 ```
 
-### Custom field mapping 🔁
+### Custom field mapping
 Sometimes your Request/Eloquent attributes won't match your VeeValidate fields/names. You can really easily "map" this by passing a key value object as a third parameter.
 
 ```javascript
