@@ -11,5 +11,11 @@
   },
   "peerDependencies": {
     "vee-validate": "^2.0"
-  }
+  },
+  "keywords": [
+    "Laravel",
+    "Validation",
+    "VeeValidate",
+    "Validator"
+  ]
 }
