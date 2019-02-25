@@ -1,6 +1,6 @@
 {
   "name": "laravel-veevalidate",
-  "version": "1.0.2",
+  "version": "1.0.21g",
   "description": "JS package that will handle your Laravel errors and automatically inject them into a VeeValidate instance.",
   "main": "index.js",
   "author": "Sammyjo20",

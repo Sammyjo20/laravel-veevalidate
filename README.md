@@ -20,20 +20,20 @@ import LaravelValidator from 'laravel-veevalidate';
 ### Using it from within the Axios catch() method.
 The first parameter you must provide is the VeeValidate instance you would like to use. It's recommended to use the global directive ($validator). The second parameter is the response callback which Axios provides.
 ```javascript
-    axios(...)
-        .catch(error_response => {
-           LaravelValidator.handleError(this.$validator, error_response) 
-        })
+axios(...)
+    .catch(error_response => {
+       LaravelValidator.handleError(this.$validator, error_response) 
+    })
 ```
 
 ### Custom field mapping
 Sometimes your Request/Eloquent attributes won't match your VeeValidate fields/names. You can really easily "map" this by passing a key value object as a third parameter.
 
 ```javascript
-    axios(...)
-        .catch(error_response => {
-           LaravelValidator.handleError(this.$validator, error_response,{
-               'email_address': 'email address',
-           }) 
-        })
+axios(...)
+    .catch(error_response => {
+       LaravelValidator.handleError(this.$validator, error_response,{
+           'email_address': 'email address',
+       }) 
+    })
 ```
