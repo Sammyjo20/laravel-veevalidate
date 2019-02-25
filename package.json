@@ -1,0 +1,11 @@
+{
+  "name": "@sammyjo20/laravel-validation-handler",
+  "version": "1.0.0",
+  "description": "Package that can handle your Laravel errors and automatically inject them into your VeeValidate instance.",
+  "main": "index.js",
+  "author": "Sam Carré",
+  "license": "ISC",
+  "peerDependencies": {
+    "vee-validate": "^2.0"
+  }
+}
