@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Sammyjo20/laravel-validation-handler.git"
+    "url": "https://github.com/Sammyjo20/laravel-veevalidate.git"
   },
   "peerDependencies": {
     "vee-validate": "^2.0"
