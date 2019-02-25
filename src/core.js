@@ -16,7 +16,7 @@ function validStatus(status) {
  * @param message
  */
 function warning(message = 'Unknown Warning.') {
-    console.warn('[Laradation Warning] ' + message);
+    console.warn('[Laravel-VeeValidate Warning] ' + message);
 }
 
 /**
@@ -25,7 +25,7 @@ function warning(message = 'Unknown Warning.') {
  * @param message
  */
 function fatalError(message = 'Unknown Error.') {
-    console.error('[Laradation Fatal Errror] ' + message);
+    console.error('[Laravel-VeeValidate Fatal Error] ' + message);
 }
 
 /**
