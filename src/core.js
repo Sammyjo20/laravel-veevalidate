@@ -108,9 +108,11 @@ function errorProcessor(validator, errors, field_map) {
             continue;
         }
 
-        validator.errors.add({
-            field,
-            msg: errors[keys[i]]
+        errors[keys[i]].forEach(msg => {
+            validator.errors.add({
+                field,
+                msg
+            });
         });
     }
 }
