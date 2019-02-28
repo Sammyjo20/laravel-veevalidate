@@ -70,7 +70,7 @@ Laravel VeeValidate provides some simple options which you can pass as the **fou
 #### Applying an option
 
 ```javascript
-    LaravelValidator.handleError(this.$validator, error_response, {}, {
-        show_errors: false
-    }) 
+LaravelValidator.handleError(this.$validator, error_response, {}, {
+    show_errors: false
+}) 
 ```
