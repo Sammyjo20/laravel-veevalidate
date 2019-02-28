@@ -31,7 +31,7 @@ axios(...)
 ```
 
 ### Using it with Fetch
-To use the error handler with Fetch, you will need to place the handleFetchError method inside of the then() block of the Fetch promise. **(You may use the handleError method but you will need to set the driver option to 'fetch').**
+To use the error handler with Fetch, you will need to place the handleFetchError method inside of the then() block of the Fetch promise.
 
 The first parameter you must provide is the VeeValidate instance you would like to use. It's recommended to use the global directive ($validator). The second parameter is the response callback which Fetch provides.
 
