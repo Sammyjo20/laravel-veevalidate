@@ -58,3 +58,12 @@ Sometimes your Request/Eloquent attributes won't match your VeeValidate fields/n
        }) 
     })
 ```
+
+### Options
+Laravel VeeValidate provides some simple options which you can pass as the **fourth** parameter of the handleError and handleFetchError methods.
+
+| Option        | Description   | Type  | Default Value | Choices      | 
+| ------------- |:-------------:| -----:| -------------:|------------:|
+| driver        | Request driver you are using.  | String | `axios`    | `axios` `fetch` |
+| show_errors    | Display console errors while in Development mode      | Boolean | `true`              |  `true` `false`          | 
+
