@@ -14,18 +14,24 @@ function validStatus(status) {
  * Display a warning
  *
  * @param message
+ * @param display
  */
-function warning(message = 'Unknown Warning.') {
-    console.warn('[Laravel-VeeValidate Warning] ' + message);
+function warning(message = 'Unknown Warning.', display = false) {
+    if (process.env.NODE_ENV && process.env.NODE_ENV === 'development' && display === true) {
+        console.warn('[Laravel-VeeValidate Warning] ' + message);
+    }
 }
 
 /**
  * Display a fatal error
  *
  * @param message
+ * @param display
  */
-function fatalError(message = 'Unknown Error.') {
-    console.error('[Laravel-VeeValidate Fatal Error] ' + message);
+function fatalError(message = 'Unknown Error.', display = false) {
+    if (process.env.NODE_ENV && process.env.NODE_ENV === 'development' && display === true) {
+        console.error('[Laravel-VeeValidate Fatal Error] ' + message);
+    }
 }
 
 /**
@@ -117,11 +123,61 @@ function errorProcessor(validator, errors, field_map) {
     }
 }
 
+/**
+ * Get an option from our Options object
+ *
+ * @param option
+ * @param options_bag
+ * @param default_option
+ * @returns {*}
+ */
+function getOption(option, options_bag, default_option) {
+    if (!option || !options_bag || !default_option) {
+        return null;
+    }
+
+    if (options_bag[option] === undefined) {
+        return default_option;
+    }
+
+    return options_bag[option];
+}
+
+/**
+ * Return the same kind of object no matter what driver
+ *
+ * @param response
+ * @param driver
+ * @returns {Promise<any>}
+ */
+function processResponseForDriver(response, driver) {
+    return new Promise((resolve, reject) => {
+        if (!response || !driver) {
+            reject('Response not properly provided.')
+        }
+
+        if (driver === 'axios') {
+            resolve(response.response)
+        } else if (driver === 'fetch') {
+            response.json().then(json_data => {
+                resolve({
+                    status: response.status,
+                    data: json_data ? json_data : null,
+                });
+            });
+        } else {
+            reject('Driver not found.');
+        }
+    })
+}
+
 module.exports = {
     validStatus,
     warning,
     fatalError,
     validFieldMap,
     responseHasErrors,
-    errorProcessor
+    errorProcessor,
+    getOption,
+    processResponseForDriver
 };

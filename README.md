@@ -1,6 +1,5 @@
 # 🚨 Laravel VeeValidate
-##### The super simple JS package to parse your Laravel Validation errors into VeeValidate.
-
+##### The super simple JS package that will handle your Laravel errors and automatically inject them into a VeeValidate instance ✨
 
 ![Example Image](https://res.cloudinary.com/sammyjo20/image/upload/v1551134147/laravel-veevalidate/Example.png)
 
@@ -20,8 +19,10 @@ Assuming you already have VeeValidate installed, you can use Laravel VeeValidate
 import LaravelValidator from 'laravel-veevalidate';
 ```
 
-### Using it from within the Axios catch() method.
-The first parameter you must provide is the VeeValidate instance you would like to use. It's recommended to use the global directive ($validator). The second parameter is the response callback which Axios provides.
+### Using it from with Axios
+To use the error handler with Axios, you will need to place the handleError method inside of the catch() block of the Axios promise. 
+
+The first parameter you must provide is the VeeValidate instance you would like to use. It's recommended to use the global directive ($validator). The second parameter is the response callback which Axios provides. You may also provide a third a fouth parameter, third for custom field mapping and fourth for options. See "Custom field mapping" and "Options" for more information.
 ```javascript
 axios(...)
     .catch(error_response => {
@@ -29,14 +30,47 @@ axios(...)
     })
 ```
 
+### Using it with Fetch
+To use the error handler with Fetch, you will need to place the handleFetchError method inside of the then() block of the Fetch promise. **(You may use the handleError method but you will need to set the driver option to 'fetch').**
+
+The first parameter you must provide is the VeeValidate instance you would like to use. It's recommended to use the global directive ($validator). The second parameter is the response callback which Fetch provides. You may also provide a third a fouth parameter, third for custom field mapping and fourth for options. See "Custom field mapping" and "Options" for more information.
+
+```javascript
+fetch(...)
+    .then(response => {
+       LaravelValidator.handleFetchError(this.$validator, response) 
+    })
+```
+
 ### Custom field mapping
 Sometimes your Request/Eloquent attributes won't match your VeeValidate fields/names. You can really easily "map" this by passing a key value object as a third parameter.
 
 ```javascript
-axios(...)
-    .catch(error_response => {
-       LaravelValidator.handleError(this.$validator, error_response,{
-           'email_address': 'email address',
+    // Axios
+    LaravelValidator.handleError(this.$validator, error_response, {
+           'email_address': 'email address', // Attribute => Field Name
        }) 
     })
+    
+    // Fetch
+    LaravelValidator.handleFetchError(this.$validator, response, {
+           'email_address': 'email address', // Attribute => Field Name
+       }) 
+    })
+```
+
+### Options
+Laravel VeeValidate provides some simple options which you can pass as the **fourth** parameter of the handleError and handleFetchError methods.
+
+| Option        | Description   | Type  | Default Value | Choices      | 
+| ------------- |-------------| :-----:| :-------------:|------------|
+| driver        | Request driver you are using.  | String | `axios`    | `axios` `fetch` |
+| show_errors    | Display console errors while in Development mode      | Boolean | `true`              |  `true` `false`          | 
+
+#### Applying an option
+
+```javascript
+LaravelValidator.handleError(this.$validator, error_response, {}, {
+    show_errors: false
+}) 
 ```
