@@ -67,3 +67,10 @@ Laravel VeeValidate provides some simple options which you can pass as the **fou
 | driver        | Request driver you are using.  | String | `axios`    | `axios` `fetch` |
 | show_errors    | Display console errors while in Development mode      | Boolean | `true`              |  `true` `false`          | 
 
+#### Applying an option
+
+```javascript
+    LaravelValidator.handleError(this.$validator, error_response, {}, {
+        show_errors: false
+    }) 
+```
