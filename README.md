@@ -43,7 +43,7 @@ fetch(...)
 ```
 
 ### Clearing Errors
-**Important: Laravel VeeValidate does not clear your VeeValidate errors. Before your request you should clear the error bag from your VeeValidate Instance: **
+**Important: Laravel VeeValidate does not clear your VeeValidate errors. Before your request you should clear the error bag from your VeeValidate Instance:**
 ```javascript
 // e.g: 
 this.$validator.errors.clear();
