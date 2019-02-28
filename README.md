@@ -42,6 +42,14 @@ fetch(...)
     })
 ```
 
+### Clearing Errors
+**Important: Laravel VeeValidate does not clear your VeeValidate errors. Before your request you should clear the error bag from your VeeValidate Instance: **
+```javascript
+// e.g: 
+this.$validator.errors.clear();
+```
+
+
 ### Custom field mapping
 Sometimes your Request/Eloquent attributes won't match your VeeValidate fields/names. You can really easily "map" this by passing a key value object as a third parameter.
 
