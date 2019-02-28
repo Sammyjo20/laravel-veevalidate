@@ -1,6 +1,6 @@
 "use strict";
 
-const { validStatus, warning, fatalError, validFieldMap, responseHasErrors, errorProcessor } = require('./core.js');
+const { validStatus, warning, fatalError, validFieldMap, responseHasErrors, errorProcessor, getOption, processResponseForDriver } = require('./core.js');
 
 /**
  *
@@ -14,35 +14,41 @@ const { validStatus, warning, fatalError, validFieldMap, responseHasErrors, erro
  */
 function handleError(validator, response, field_map = {}, options = {}) {
 
-    response = response.response;
+    let driver = getOption('driver', options, 'axios');
+    let show_errors = getOption('show_errors', options, true);
 
-    if (!validator) {
-        return fatalError('VeeValidate instance not found.');
-    }
+    processResponseForDriver(response, driver).then(response => {
 
-    if (!response) {
-        return fatalError('Response empty.');
-    }
-
-    if (Object.keys(field_map).length > 0 && !validFieldMap(field_map)) {
-        return fatalError('Your field map was not valid.');
-    }
-
-    if (!validStatus(response.status)) {
-        if (response.status === 403) {
-            return warning('Response was not authorized.');
+        if (!validator) {
+            return fatalError('VeeValidate instance not found.', show_errors);
         }
 
-        return warning('Response status did not meet expectations. Expecting: 422');
-    }
+        if (!response) {
+            return fatalError('Response empty. Are you using the right driver?', show_errors);
+        }
 
-    if (!responseHasErrors(response.data)) {
-        return warning('Response did not contain any Laravel errors.');
-    }
+        if (Object.keys(field_map).length > 0 && !validFieldMap(field_map)) {
+            return fatalError('Your field map was not valid.', show_errors);
+        }
 
-    errorProcessor(validator, response.data.errors, field_map);
+        if (!validStatus(response.status)) {
+            if (response.status === 403) {
+                warning('Response was not authorized.', show_errors);
+            }
 
-    // Boom.
+            warning('Response status did not meet expectations. Expecting: 422', show_errors);
+        }
+
+        if (!responseHasErrors(response.data)) {
+            return warning('Response did not contain any Laravel errors.', show_errors);
+        }
+
+        errorProcessor(validator, response.data.errors, field_map);
+
+        // Boom.
+    }).catch(error => {
+        return fatalError(error, show_errors)
+    });
 }
 
 module.exports = handleError;
