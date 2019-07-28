@@ -89,3 +89,8 @@ this.$laravelValidator.handleError(this.$validator, error_response, {}, {
     show_errors: false
 }) 
 ```
+
+## And that's it! ✨
+This is my first JS/NPM package, I really hope it's been useful to you, if you like my work and want to show some love, consider buying me some coding fuel (Coffee) ❤
+
+https://ko-fi.com/sammyjo20
