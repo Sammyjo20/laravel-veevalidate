@@ -5,16 +5,23 @@
 
 ## Installation
 ```
-yarn add laravel-veevalidate
+npm i laravel-veevalidate
 ```
 or
 ```
-npm -i laravel-veevalidate
+yarn add laravel-veevalidate
 ```
 
 ## Usage
-Assuming you already have VeeValidate installed, you can use Laravel VeeValidate on a component-to-component basis.
+Assuming you already have VeeValidate installed, you can use Laravel VeeValidate as a Vue Prototype.
 
+```javascript
+import LaravelValidator from 'laravel-veevalidate';
+
+Vue.prototype.$laravelValidator = LaravelValidator;
+```
+
+Alternatively, you can use it on a on a component-to-component basis.
 ```javascript
 import LaravelValidator from 'laravel-veevalidate';
 ```
@@ -26,7 +33,7 @@ The first parameter you must provide is the VeeValidate instance you would like 
 ```javascript
 axios(...)
     .catch(error_response => {
-       LaravelValidator.handleError(this.$validator, error_response) 
+       this.$laravelValidator.handleError(this.$validator, error_response) 
     })
 ```
 
@@ -38,7 +45,7 @@ The first parameter you must provide is the VeeValidate instance you would like 
 ```javascript
 fetch(...)
     .then(response => {
-       LaravelValidator.handleFetchError(this.$validator, response) 
+       this.$laravelValidator.handleFetchError(this.$validator, response) 
     })
 ```
 
@@ -55,13 +62,13 @@ Sometimes your Request/Eloquent attributes won't match your VeeValidate fields/n
 
 ```javascript
     // Axios
-    LaravelValidator.handleError(this.$validator, error_response, {
+    this.$laravelValidator.handleError(this.$validator, error_response, {
            'email_address': 'email address', // Attribute => Field Name
        }) 
     })
     
     // Fetch
-    LaravelValidator.handleFetchError(this.$validator, response, {
+    this.$laravelValidator.handleFetchError(this.$validator, response, {
            'email_address': 'email address', // Attribute => Field Name
        }) 
     })
@@ -78,7 +85,7 @@ Laravel VeeValidate provides some simple options which you can pass as the **fou
 #### Applying an option
 
 ```javascript
-LaravelValidator.handleError(this.$validator, error_response, {}, {
+this.$laravelValidator.handleError(this.$validator, error_response, {}, {
     show_errors: false
 }) 
 ```
