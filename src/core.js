@@ -123,8 +123,8 @@ function errorProcessor(validator, errors, field_map) {
 
         errors[keys[i]].forEach(function (msg) {
             validator.errors.add({
-                field,
-                msg
+                field: field,
+                msg: msg
             });
         });
     }
@@ -158,7 +158,7 @@ function getOption(option, options_bag, default_option) {
  * @returns {Promise<any>}
  */
 function processResponseForDriver(response, driver) {
-    return new Promise((resolve, reject) => {
+    return new Promise(function (resolve, reject) {
         if (!response || !driver) {
             reject('Response not properly provided.')
         }
@@ -166,7 +166,7 @@ function processResponseForDriver(response, driver) {
         if (driver === 'axios') {
             resolve(response.response)
         } else if (driver === 'fetch') {
-            response.json().then(json_data => {
+            response.json().then(function (json_data) {
                 resolve({
                     status: response.status,
                     data: json_data ? json_data : null,
@@ -175,7 +175,7 @@ function processResponseForDriver(response, driver) {
         } else {
             reject('Driver not found.');
         }
-    })
+    });
 }
 
 module.exports = {

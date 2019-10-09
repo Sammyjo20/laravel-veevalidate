@@ -17,7 +17,7 @@ function handleError(validator, response, field_map = {}, options = {}) {
     let driver = getOption('driver', options, 'axios');
     let show_errors = getOption('show_errors', options, true);
 
-    processResponseForDriver(response, driver).then(response => {
+    processResponseForDriver(response, driver).then(function (response) {
 
         if (!validator) {
             return fatalError('VeeValidate instance not found.', show_errors);
@@ -46,7 +46,7 @@ function handleError(validator, response, field_map = {}, options = {}) {
         errorProcessor(validator, response.data.errors, field_map);
 
         // Boom.
-    }).catch(error => {
+    }).catch(function (error) {
         return fatalError(error, show_errors)
     });
 }
