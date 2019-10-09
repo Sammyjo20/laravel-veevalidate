@@ -65,4 +65,6 @@ function handleError(validator, response, field_map, options) {
     });
 }
 
-module.exports = handleError;
+export default {
+    handleError: handleError
+}

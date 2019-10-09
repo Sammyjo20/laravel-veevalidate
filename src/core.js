@@ -176,13 +176,13 @@ function processResponseForDriver(response, driver) {
     });
 }
 
-module.exports = {
-    validStatus: validStatus,
-    warning: warning,
-    fatalError: fatalError,
-    validFieldMap: validFieldMap,
-    responseHasErrors: responseHasErrors,
-    errorProcessor: errorProcessor,
-    getOption: getOption,
-    processResponseForDriver: processResponseForDriver
+export default {
+    validStatus,
+    warning,
+    fatalError,
+    validFieldMap,
+    responseHasErrors,
+    errorProcessor,
+    getOption,
+    processResponseForDriver
 };
