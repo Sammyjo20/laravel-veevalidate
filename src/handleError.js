@@ -1,4 +1,4 @@
-import {
+const {
     validStatus,
     warning,
     fatalError,
@@ -7,7 +7,7 @@ import {
     errorProcessor,
     getOption,
     processResponseForDriver
-} from './core.js';
+} = require('./core.js');
 
 /**
  *
@@ -65,6 +65,4 @@ function handleError(validator, response, field_map, options) {
     });
 }
 
-export default {
-    handleError: handleError
-}
+module.exports = handleError;

@@ -23,6 +23,4 @@ function handleFetchError(validator, response, field_map, options) {
     return handleError(validator, response, field_map, options);
 }
 
-export default {
-    handleFetchError: handleFetchError
-}
+module.exports = handleFetchError;

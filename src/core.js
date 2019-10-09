@@ -176,7 +176,7 @@ function processResponseForDriver(response, driver) {
     });
 }
 
-export default {
+module.exports = {
     validStatus,
     warning,
     fatalError,

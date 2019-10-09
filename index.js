@@ -1,4 +1,4 @@
 module.exports = {
-    handleError: require('./src/handleError.js').default,
-    handleFetchError: require('./src/handleFetchError.js').default
+    handleError: require('./src/handleError.js'),
+    handleFetchError: require('./src/handleFetchError.js')
 };
