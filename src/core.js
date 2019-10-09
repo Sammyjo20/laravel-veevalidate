@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  * Check if the given status is 422 (Unprocessable Entity)
  *
