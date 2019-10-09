@@ -1,6 +1,15 @@
 "use strict";
 
-const { validStatus, warning, fatalError, validFieldMap, responseHasErrors, errorProcessor, getOption, processResponseForDriver } = require('./core.js');
+import {
+    validStatus,
+    warning,
+    fatalError,
+    validFieldMap,
+    responseHasErrors,
+    errorProcessor,
+    getOption,
+    processResponseForDriver
+} from './core.js';
 
 /**
  *
@@ -12,7 +21,14 @@ const { validStatus, warning, fatalError, validFieldMap, responseHasErrors, erro
  * @param options
  * @returns {void|*}
  */
-function handleError(validator, response, field_map = {}, options = {}) {
+function handleError(validator, response, field_map, options) {
+    if (!field_map) {
+        field_map = {};
+    }
+
+    if (!options) {
+        options = {};
+    }
 
     let driver = getOption('driver', options, 'axios');
     let show_errors = getOption('show_errors', options, true);

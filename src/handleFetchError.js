@@ -12,7 +12,15 @@ const handleError = require('./handleError.js');
  * @param options
  * @returns {void|*}
  */
-function handleFetchError(validator, response, field_map = {}, options = {}) {
+function handleFetchError(validator, response, field_map, options) {
+    if (!field_map) {
+        field_map = {};
+    }
+
+    if (!options) {
+        options = {};
+    }
+
     options['driver'] = 'fetch';
     return handleError(validator, response, field_map, options);
 }
