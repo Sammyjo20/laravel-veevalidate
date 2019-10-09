@@ -16,7 +16,11 @@ function validStatus(status) {
  * @param message
  * @param display
  */
-function warning(message = 'Unknown Warning.', display = false) {
+function warning(message, display) {
+    if (!message) {
+        message = 'Unknown Warning';
+    }
+
     if (process.env.NODE_ENV && process.env.NODE_ENV === 'development' && display === true) {
         console.warn('[Laravel-VeeValidate Warning] ' + message);
     }
@@ -28,7 +32,11 @@ function warning(message = 'Unknown Warning.', display = false) {
  * @param message
  * @param display
  */
-function fatalError(message = 'Unknown Error.', display = false) {
+function fatalError(message, display) {
+    if (!message) {
+        message = 'Unknown Error';
+    }
+
     if (process.env.NODE_ENV && process.env.NODE_ENV === 'development' && display === true) {
         console.error('[Laravel-VeeValidate Fatal Error] ' + message);
     }
