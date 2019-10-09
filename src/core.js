@@ -105,7 +105,6 @@ function responseHasErrors(data) {
  * @param field_map
  */
 function errorProcessor(validator, errors, field_map) {
-
     let keys = Object.keys(errors);
     let field_keys = Object.keys(field_map);
 
@@ -122,7 +121,7 @@ function errorProcessor(validator, errors, field_map) {
             continue;
         }
 
-        errors[keys[i]].forEach(msg => {
+        errors[keys[i]].forEach(function (msg) {
             validator.errors.add({
                 field,
                 msg
