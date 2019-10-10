@@ -4,7 +4,7 @@
  * @param status
  * @returns {boolean}
  */
-function validStatus(status) {
+export function validStatus(status) {
     return status === 422;
 }
 
@@ -14,7 +14,7 @@ function validStatus(status) {
  * @param message
  * @param display
  */
-function warning(message, display) {
+export function warning(message, display) {
     if (!message) {
         message = 'Unknown Warning';
     }
@@ -30,7 +30,7 @@ function warning(message, display) {
  * @param message
  * @param display
  */
-function fatalError(message, display) {
+export function fatalError(message, display) {
     if (!message) {
         message = 'Unknown Error';
     }
@@ -46,7 +46,7 @@ function fatalError(message, display) {
  * @param field_map
  * @returns {boolean}
  */
-function validFieldMap(field_map) {
+export function validFieldMap(field_map) {
     let keys = Object.keys(field_map);
     let dup_keys = [];
     let dup_values = [];
@@ -83,7 +83,7 @@ function validFieldMap(field_map) {
  * @param data
  * @returns {boolean}
  */
-function responseHasErrors(data) {
+export function responseHasErrors(data) {
     if (!data || data.length <= 0) {
         return false;
     }
@@ -102,7 +102,7 @@ function responseHasErrors(data) {
  * @param errors
  * @param field_map
  */
-function errorProcessor(validator, errors, field_map) {
+export function errorProcessor(validator, errors, field_map) {
     let keys = Object.keys(errors);
     let field_keys = Object.keys(field_map);
 
@@ -136,7 +136,7 @@ function errorProcessor(validator, errors, field_map) {
  * @param default_option
  * @returns {*}
  */
-function getOption(option, options_bag, default_option) {
+export function getOption(option, options_bag, default_option) {
     if (!option || !options_bag || !default_option) {
         return null;
     }
@@ -155,7 +155,7 @@ function getOption(option, options_bag, default_option) {
  * @param driver
  * @returns {Promise<any>}
  */
-function processResponseForDriver(response, driver) {
+export function processResponseForDriver(response, driver) {
     return new Promise(function (resolve, reject) {
         if (!response || !driver) {
             reject('Response not properly provided.')
@@ -175,14 +175,3 @@ function processResponseForDriver(response, driver) {
         }
     });
 }
-
-module.exports = {
-    validStatus,
-    warning,
-    fatalError,
-    validFieldMap,
-    responseHasErrors,
-    errorProcessor,
-    getOption,
-    processResponseForDriver
-};

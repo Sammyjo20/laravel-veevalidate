@@ -1,4 +1,7 @@
-module.exports = {
-    handleError: require('./src/handleError.js'),
-    handleFetchError: require('./src/handleFetchError.js')
-};
+import handleError from './src/handleError.js';
+import handleFetchError from './src/handleFetchError.js';
+
+export default {
+    handleError: handleError,
+    handleFetchError: handleFetchError
+}
