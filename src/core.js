@@ -49,7 +49,6 @@ export function fatalError(message, display) {
 export function validFieldMap(field_map) {
     let keys = Object.keys(field_map);
     let dup_keys = [];
-    let dup_values = [];
 
     if (keys.length <= 0) {
         return false;
@@ -62,15 +61,10 @@ export function validFieldMap(field_map) {
             return false;
         }
 
-        if (dup_values.includes(value)) {
-            return false;
-        }
-
         if (dup_keys.includes(value)) {
             return false;
         }
 
-        dup_values.push(value);
         dup_keys.push(keys[i]);
     }
 
